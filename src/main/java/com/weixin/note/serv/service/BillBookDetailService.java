@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
-import com.weixin.entity.BillBookDetail;
-import com.weixin.util.Query;
+import com.weixin.note.serv.pojo.entity.BillBookDetail;
+import com.weixin.note.serv.util.Query;
 
 /**
  * 账单明细表

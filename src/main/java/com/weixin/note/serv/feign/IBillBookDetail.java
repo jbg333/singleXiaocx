@@ -11,14 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.weixin.entity.BillBookDetail;
-import com.weixin.util.Rt;
-
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import com.weixin.note.serv.pojo.entity.BillBookDetail;
+import com.weixin.note.serv.util.Rt;
 
 /**
  * 账单明细表

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.weixin.redis.JedisProperties;
+import com.weixin.note.serv.redis.JedisProperties;
 
  
 

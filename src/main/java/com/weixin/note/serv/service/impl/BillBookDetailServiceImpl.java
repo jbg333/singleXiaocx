@@ -3,18 +3,18 @@ package com.weixin.note.serv.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.weixin.enm.DataStatusEnum;
-import com.weixin.entity.BillBookDetail;
 import com.weixin.note.serv.dao.BillBookDetailDao;
+import com.weixin.note.serv.pojo.enm.DataStatusEnum;
+import com.weixin.note.serv.pojo.entity.BillBookDetail;
 import com.weixin.note.serv.service.BillBookDetailService;
-import com.weixin.util.Query;
+import com.weixin.note.serv.util.Query;
 
 
 

@@ -1,6 +1,6 @@
 package com.weixin.note.serv.dao;
 
-import com.weixin.entity.BillBookDetail;
+import com.weixin.note.serv.pojo.entity.BillBookDetail;
 
 /**
  * 账单明细表

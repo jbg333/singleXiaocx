@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jia.weixin.feign.loginpage.ILoginPage;
-import com.weixin.util.Rt;
-import com.weixin.vo.Person;
-import com.weixin.vo.StandingBook;
+import com.weixin.note.serv.feign.ILoginPage;
+import com.weixin.note.serv.pojo.vo.Person;
+import com.weixin.note.serv.pojo.vo.StandingBook;
+import com.weixin.note.serv.util.Rt;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

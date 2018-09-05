@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.weixin.redis.JedisProperties;
-import com.weixin.redis.RedisClient;
-import com.weixin.redis.impl.RedisClientImpl;
-import com.weixin.redis.impl.RedisSentinelClientImpl;
+import com.weixin.note.serv.redis.impl.RedisClientImpl;
+import com.weixin.note.serv.redis.impl.RedisSentinelClientImpl;
 
 
 @Configuration

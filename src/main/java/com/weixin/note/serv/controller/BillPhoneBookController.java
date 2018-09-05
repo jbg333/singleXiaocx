@@ -3,7 +3,6 @@ package com.weixin.note.serv.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,25 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.jia.weixin.feign.bill.IBillPhoneBookController;
-import com.weixin.entity.BillPhoneBook;
+import com.weixin.note.serv.feign.IBillPhoneBookController;
+import com.weixin.note.serv.pojo.entity.BillPhoneBook;
 import com.weixin.note.serv.service.BillPhoneBookService;
-import com.weixin.util.Query;
-import com.weixin.util.Rt;
-import com.weixin.util.RtPageUtils;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import com.weixin.note.serv.util.Query;
+import com.weixin.note.serv.util.Rt;
+import com.weixin.note.serv.util.RtPageUtils;
 
 
 
@@ -40,6 +29,7 @@ import io.swagger.annotations.ApiResponses;
  * @email 402376085@qq.com
  * @date 2018-09-04 10:14:15
  */
+@Controller
 public class BillPhoneBookController implements IBillPhoneBookController{
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired

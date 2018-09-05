@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.weixin.entity.BillPhoneBook;
-import com.weixin.util.Rt;
+import com.weixin.note.serv.pojo.entity.BillPhoneBook;
+import com.weixin.note.serv.util.Rt;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -32,7 +32,6 @@ import io.swagger.annotations.ApiResponses;
  * @date 2018-09-04 10:14:15
  */
 @Api(tags = "BillPhoneBookController")
-@Controller
 @RequestMapping("billphonebook")
 public interface IBillPhoneBookController {
     /**

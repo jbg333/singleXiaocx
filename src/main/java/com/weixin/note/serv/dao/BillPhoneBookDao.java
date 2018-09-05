@@ -1,6 +1,6 @@
 package com.weixin.note.serv.dao;
 
-import com.weixin.entity.BillPhoneBook;
+import com.weixin.note.serv.pojo.entity.BillPhoneBook;
 
 /**
  * 电话本

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.jia.weixin</groupId>
-	<artifactId>weixin-service</artifactId>
+	<artifactId>single-wx-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>weixin-service</name>
+	<name>single-wx-service</name>
 	<description>微信后台</description>
 
 	<parent>
@@ -40,6 +40,17 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			</dependency>
+			
+			<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			</dependency>
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -49,7 +60,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-          <dependency>
+          <!-- <dependency>
        		<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-archaius</artifactId>
 		</dependency>
@@ -64,7 +75,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>  
 		    <groupId>org.springframework.boot</groupId>  
 		    <artifactId>spring-boot-starter-web</artifactId>  
@@ -126,17 +137,11 @@
 			<artifactId>pagehelper</artifactId>
 			<version>5.1.2</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.jia.weixin</groupId>
-			<artifactId>weixin-feign</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
+		<!-- 
 		  <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+		</dependency> -->
 <!-- 		  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -194,13 +199,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
-			<version>${pagehelper.version}</version>
-		</dependency>
-
-
 		<!-- mybatis and druid end -->
 
 		<dependency>
@@ -213,13 +211,13 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
+			<!-- <dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
+			</dependency> -->
 		</dependencies>
 	</dependencyManagement>
 

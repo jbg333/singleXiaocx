@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.jia.weixin.feign.bill.IBillUser;
-import com.weixin.entity.BillUser;
+import com.weixin.note.serv.feign.IBillUser;
+import com.weixin.note.serv.pojo.entity.BillUser;
 import com.weixin.note.serv.service.BillUserService;
-import com.weixin.util.Query;
-import com.weixin.util.Rt;
-import com.weixin.util.RtPageUtils;
+import com.weixin.note.serv.util.Query;
+import com.weixin.note.serv.util.Rt;
+import com.weixin.note.serv.util.RtPageUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

@@ -1,6 +1,6 @@
 package com.weixin.note.serv.dao;
 
-import com.weixin.entity.BillUser;
+import com.weixin.note.serv.pojo.entity.BillUser;
 
 /**
  * 用户表

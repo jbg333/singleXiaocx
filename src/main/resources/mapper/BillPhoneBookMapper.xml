@@ -4,7 +4,7 @@
 <mapper namespace="com.weixin.note.serv.dao.BillPhoneBookDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.weixin.entity.BillPhoneBook" id="billPhoneBookMap">
+    <resultMap type="com.weixin.note.serv.pojo.entity.BillPhoneBook" id="billPhoneBookMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
         <result property="bookUserName" column="book_user_name"/>
@@ -60,7 +60,7 @@
         </where>
     </sql>
 	 
-	<insert id="save" parameterType="com.weixin.entity.BillPhoneBook">
+	<insert id="save" parameterType="com.weixin.note.serv.pojo.entity.BillPhoneBook">
 		insert into bill_phone_book
 		(
 			`id`, 
@@ -83,7 +83,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.weixin.entity.BillPhoneBook">
+	<update id="update" parameterType="com.weixin.note.serv.pojo.entity.BillPhoneBook">
 		update bill_phone_book 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>

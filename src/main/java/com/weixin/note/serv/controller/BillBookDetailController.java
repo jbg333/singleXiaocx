@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.jia.weixin.feign.bill.IBillBookDetail;
-import com.weixin.entity.BillBookDetail;
+import com.weixin.note.serv.feign.IBillBookDetail;
+import com.weixin.note.serv.pojo.entity.BillBookDetail;
 import com.weixin.note.serv.service.BillBookDetailService;
-import com.weixin.util.Query;
-import com.weixin.util.Rt;
-import com.weixin.util.RtPageUtils;
+import com.weixin.note.serv.util.Query;
+import com.weixin.note.serv.util.Rt;
+import com.weixin.note.serv.util.RtPageUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -49,7 +49,6 @@ public class BillBookDetailController implements IBillBookDetail{
     /**
      * 跳转到列表页
      */
-    @RequiresPermissions("billbookdetail:list")
     public String list() {
         return "billbookdetail/list";
     }
@@ -67,7 +66,6 @@ public class BillBookDetailController implements IBillBookDetail{
 	})	
     @ResponseBody
 	@RequestMapping(value = "/listData", method = {RequestMethod.POST})
-	@RequiresPermissions("billbookdetail:list")
 	public Rt<BillBookDetail> listData(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		try {
@@ -110,7 +108,6 @@ public class BillBookDetailController implements IBillBookDetail{
      * 跳转到新增页面
      **/
     @RequestMapping(value = "/add", method = {RequestMethod.GET})
-    @RequiresPermissions("billbookdetail:save")
     public String add(){
         return "billbookdetail/add";
     }
@@ -119,7 +116,6 @@ public class BillBookDetailController implements IBillBookDetail{
      *   跳转到修改页面
      **/
     @RequestMapping(value = "/edit/{id}", method = {RequestMethod.GET})
-    @RequiresPermissions("billbookdetail:update")
     public String edit(Model model, @PathVariable("id") Long id){
 		BillBookDetail billBookDetail = billBookDetailService.get(id);
         model.addAttribute("model",billBookDetail);
@@ -139,7 +135,6 @@ public class BillBookDetailController implements IBillBookDetail{
 	})	
     @ResponseBody
     @RequestMapping(value = "/info/{id}", method = {RequestMethod.GET})
-    @RequiresPermissions("billbookdetail:info")
     public Rt<BillBookDetail> info(@PathVariable("id") Long id){
 	    try {
 	       
@@ -165,7 +160,6 @@ public class BillBookDetailController implements IBillBookDetail{
 	})	
     @ResponseBody
 	@RequestMapping(value = "/save", method = {RequestMethod.POST})
-	@RequiresPermissions("billbookdetail:save")
 	public Rt<String> save(@RequestBody BillBookDetail billBookDetail){
 		 try {
 			billBookDetailService.save(billBookDetail);
@@ -189,7 +183,6 @@ public class BillBookDetailController implements IBillBookDetail{
 	})	
     @ResponseBody
 	@RequestMapping(value = "/update", method = {RequestMethod.POST})
-	@RequiresPermissions("billbookdetail:update")
 	public Rt<String> update(@RequestBody BillBookDetail billBookDetail){
 		 try {
 			billBookDetailService.update(billBookDetail);
@@ -205,7 +198,6 @@ public class BillBookDetailController implements IBillBookDetail{
      */
     @ResponseBody
     @RequestMapping(value = "/enable", method = {RequestMethod.POST})
-    @RequiresPermissions("billbookdetail:update")
     public Rt<String> enable(@RequestBody Long[] ids){
         /*String stateValue=StateEnum.ENABLE.getCode();
 		billBookDetailService.updateDataFlag(ids,stateValue);*/
@@ -216,7 +208,6 @@ public class BillBookDetailController implements IBillBookDetail{
      */
     @ResponseBody
     @RequestMapping(value = "/limit", method = {RequestMethod.POST})
-    @RequiresPermissions("billbookdetail:update")
     public Rt<String> limit(@RequestBody Long[] ids){
        /* String stateValue=StateEnum.LIMIT.getCode();
 		billBookDetailService.updateDataFlag(ids,stateValue);*/
@@ -228,7 +219,7 @@ public class BillBookDetailController implements IBillBookDetail{
 	 */
     @ResponseBody
 	@RequestMapping(value = "/delete", method = {RequestMethod.POST})
-	@RequiresPermissions("billbookdetail:delete")
+	
 	public Rt<String> delete(@RequestBody Long[] ids){
 		 try {
 			billBookDetailService.deleteBatch(ids);

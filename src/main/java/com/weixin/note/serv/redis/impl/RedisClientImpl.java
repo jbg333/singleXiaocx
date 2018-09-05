@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
-import com.weixin.redis.RedisClient;
-import com.weixin.redis.lock.RedisLock;
+import com.weixin.note.serv.redis.RedisClient;
+import com.weixin.note.serv.redis.lock.RedisLock;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

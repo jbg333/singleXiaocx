@@ -1,7 +1,7 @@
 package com.weixin.note.serv.redis.config;
 
-import com.weixin.redis.key.KeyUtils;
-import com.weixin.redis.key.ValueTypeEnum;
+import com.weixin.note.serv.redis.key.KeyUtils;
+import com.weixin.note.serv.redis.key.ValueTypeEnum;
 
 /**
  * redis过期时间常量

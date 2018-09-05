@@ -2,7 +2,7 @@ package com.weixin.note.serv.redis.lock;
 
 import java.util.Random;
 
-import com.weixin.redis.RedisClient;
+import com.weixin.note.serv.redis.RedisClient;
 
 
 

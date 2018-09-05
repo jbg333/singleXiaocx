@@ -10,11 +10,11 @@ import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.weixin.enm.DataStatusEnum;
-import com.weixin.entity.BillUser;
 import com.weixin.note.serv.dao.BillUserDao;
+import com.weixin.note.serv.pojo.enm.DataStatusEnum;
+import com.weixin.note.serv.pojo.entity.BillUser;
 import com.weixin.note.serv.service.BillUserService;
-import com.weixin.util.Query;
+import com.weixin.note.serv.util.Query;
 
 
 
