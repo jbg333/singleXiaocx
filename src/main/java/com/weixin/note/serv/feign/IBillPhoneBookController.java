@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiResponses;
  * @email 402376085@qq.com
  * @date 2018-09-04 10:14:15
  */
-@Api(tags = "BillPhoneBookController")
+@Api(tags = "电话相关接口")
 @RequestMapping("billphonebook")
 public interface IBillPhoneBookController {
     /**

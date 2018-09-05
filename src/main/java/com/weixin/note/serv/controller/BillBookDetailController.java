@@ -3,7 +3,6 @@ package com.weixin.note.serv.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ import io.swagger.annotations.ApiResponses;
  * @email 402376085@qq.com
  * @date 2018-08-27 17:05:38
  */
-@Api(tags = "BillBookDetailController")
+@Api(tags = "账单详情")
 @Controller
 @RequestMapping("billbookdetail")
 public class BillBookDetailController implements IBillBookDetail{

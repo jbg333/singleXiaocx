@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiResponses;
  * @email 402376085@qq.com
  * @date 2018-08-27 17:05:38
  */
-@Api(tags = "BillUserController")
+@Api(tags = "用户相关接口")
 @Controller
 public class BillUserController implements IBillUser {
 	protected Logger logger = LoggerFactory.getLogger(getClass());

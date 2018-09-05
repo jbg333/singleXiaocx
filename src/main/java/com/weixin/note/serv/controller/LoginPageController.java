@@ -13,8 +13,10 @@ import com.weixin.note.serv.pojo.vo.Person;
 import com.weixin.note.serv.pojo.vo.StandingBook;
 import com.weixin.note.serv.util.Rt;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+@Api(tags = "登录相关接口")
 @RestController
 public class LoginPageController implements ILoginPage{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
