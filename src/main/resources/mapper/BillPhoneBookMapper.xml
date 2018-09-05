@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.weixin.note.serv.dao.BillPhoneBookDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.weixin.entity.BillPhoneBook" id="billPhoneBookMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="bookUserName" column="book_user_name"/>
+        <result property="bookUserPhone" column="book_user_phone"/>
+        <result property="dataFlag" column="data_flag"/>
+        <result property="createDatetime" column="create_datetime"/>
+        <result property="updateDatetime" column="update_datetime"/>
+    </resultMap>
+
+	<select id="get" resultMap="billPhoneBookMap">
+		select * from bill_phone_book where id = #{value}
+	</select>
+
+	<select id="getList" resultMap="billPhoneBookMap">
+		select * from bill_phone_book t <include refid="where_clause" />
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+        <!--
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+		-->
+	</select>
+	
+ 	<select id="getCount" resultType="int">
+		select count(*) from bill_phone_book t  <include refid="where_clause" />
+	</select>
+
+    <!-- 搜索数据区域 -->
+    <sql id="where_clause">
+        <where>
+            1=1
+            <if test="id != null and id != ''"> and t.id = #{id} </if>
+    		<if test="idVague != null and idVague != ''"> and t.id like concat('%',#{idVague},'%') </if>
+            <if test="userId != null and userId != ''"> and t.user_id = #{userId} </if>
+    		<if test="userIdVague != null and userIdVague != ''"> and t.user_id like concat('%',#{userIdVague},'%') </if>
+            <if test="bookUserName != null and bookUserName != ''"> and t.book_user_name = #{bookUserName} </if>
+    		<if test="bookUserNameVague != null and bookUserNameVague != ''"> and t.book_user_name like concat('%',#{bookUserNameVague},'%') </if>
+            <if test="bookUserPhone != null and bookUserPhone != ''"> and t.book_user_phone = #{bookUserPhone} </if>
+    		<if test="bookUserPhoneVague != null and bookUserPhoneVague != ''"> and t.book_user_phone like concat('%',#{bookUserPhoneVague},'%') </if>
+            <if test="dataFlag != null and dataFlag != ''"> and t.data_flag = #{dataFlag} </if>
+    		<if test="dataFlagVague != null and dataFlagVague != ''"> and t.data_flag like concat('%',#{dataFlagVague},'%') </if>
+            <if test="createDatetime != null and createDatetime != ''"> and t.create_datetime = #{createDatetime} </if>
+    		<if test="createDatetimeVague != null and createDatetimeVague != ''"> and t.create_datetime like concat('%',#{createDatetimeVague},'%') </if>
+            <if test="updateDatetime != null and updateDatetime != ''"> and t.update_datetime = #{updateDatetime} </if>
+    		<if test="updateDatetimeVague != null and updateDatetimeVague != ''"> and t.update_datetime like concat('%',#{updateDatetimeVague},'%') </if>
+        </where>
+    </sql>
+	 
+	<insert id="save" parameterType="com.weixin.entity.BillPhoneBook">
+		insert into bill_phone_book
+		(
+			`id`, 
+			`user_id`, 
+			`book_user_name`, 
+			`book_user_phone`, 
+			`data_flag`, 
+			`create_datetime`, 
+			`update_datetime`
+		)
+		values
+		(
+			#{id}, 
+			#{userId}, 
+			#{bookUserName}, 
+			#{bookUserPhone}, 
+			#{dataFlag}, 
+			#{createDatetime}, 
+			#{updateDatetime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.weixin.entity.BillPhoneBook">
+		update bill_phone_book 
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="bookUserName != null">`book_user_name` = #{bookUserName}, </if>
+			<if test="bookUserPhone != null">`book_user_phone` = #{bookUserPhone}, </if>
+			<if test="dataFlag != null">`data_flag` = #{dataFlag}, </if>
+			<if test="createDatetime != null">`create_datetime` = #{createDatetime}, </if>
+			<if test="updateDatetime != null">`update_datetime` = #{updateDatetime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bill_phone_book where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bill_phone_book where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
