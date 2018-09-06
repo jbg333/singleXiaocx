@@ -115,4 +115,11 @@ public class Rt<T> {
 		result.setCode(500);
 		return (Rt<T>) result;
 	}
+	
+	public static  <T>  Rt<T> error(Integer errCode,String data) {
+		Rt<T> result = new Rt<T>();
+		result.setMes(data);
+		result.setCode(errCode);
+		return (Rt<T>) result;
+	}
 }

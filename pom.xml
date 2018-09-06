@@ -36,6 +36,14 @@
 	</properties>
 
   <dependencies>
+  		<!-- jwt整合 -->
+  				<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
+		</dependency>
+		<!-- jwt整合 -->
+		
   		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
