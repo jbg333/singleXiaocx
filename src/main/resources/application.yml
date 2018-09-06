@@ -1,5 +1,7 @@
 server:
   port: 8080
+  tomcat:
+    uri-encoding: UTF-8
    # ssl:
   #   key-store: keystore.p12
   #   key-password: 111111
@@ -19,6 +21,11 @@ server:
 #      defaultZone: http://localhost:9001/eureka/
 
 spring:
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
   application:
     name: note-service
   profiles:

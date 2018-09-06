@@ -2,6 +2,8 @@ package com.weixin.note.serv.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import com.github.pagehelper.PageInfo;
 import com.weixin.note.serv.feign.IBillUser;
 import com.weixin.note.serv.pojo.entity.BillUser;
 import com.weixin.note.serv.service.BillUserService;
+import com.weixin.note.serv.sso.SSOHelper;
+import com.weixin.note.serv.sso.token.SSOToken;
 import com.weixin.note.serv.util.Query;
 import com.weixin.note.serv.util.Rt;
 import com.weixin.note.serv.util.RtPageUtils;
@@ -46,9 +50,11 @@ public class BillUserController implements IBillUser {
 		return "billuser/list";
 	}
 	@ResponseBody
-	public Rt<BillUser> listData(@RequestParam Map<String, Object> params) {
+	public Rt<BillUser> listData(@RequestParam Map<String, Object> params,HttpServletRequest request) {
 		// 查询列表数据
 		try {
+			SSOToken token = SSOHelper.getSSOToken(request);
+			request.getAttribute("");
 			Query query = new Query(params);
 			PageInfo<BillUser> billUserResult = billUserService.queryPageList(query);
 			RtPageUtils<BillUser> pageUtil = new RtPageUtils<>(billUserResult.getList(), billUserResult.getTotal(),

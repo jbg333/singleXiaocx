@@ -3,6 +3,8 @@ package com.weixin.note.serv.feign;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +40,7 @@ public interface IBillUser {
     @ResponseBody
 	@RequestMapping(value = "/listData", method = {RequestMethod.POST})
 	
-	public Rt<BillUser> listData(@RequestParam Map<String, Object> params);
+	public Rt<BillUser> listData(@RequestParam Map<String, Object> params,HttpServletRequest request);
 	
 	
 	 /**

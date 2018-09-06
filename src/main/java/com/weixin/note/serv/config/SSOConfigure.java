@@ -50,5 +50,6 @@ public class SSOConfigure {
 		SSOConfig.setAuthorization(ssoAuthorization);		
 		return SSOConfig.init(ssoProperties.getConfig());
 	}
+	
 }
   

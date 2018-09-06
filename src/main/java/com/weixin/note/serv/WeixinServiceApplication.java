@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //@EnableEurekaClient
 @SpringBootApplication
 @MapperScan(basePackages={"com.weixin.note.serv.dao"})
-@EnableSwagger2
 public class WeixinServiceApplication {
 
 	public static void main(String[] args) {
