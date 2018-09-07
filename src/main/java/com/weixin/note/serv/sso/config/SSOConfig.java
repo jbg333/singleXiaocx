@@ -375,30 +375,8 @@ public class SSOConfig {
 		 * if(userAgent.matches("/iPhone/") &&
 		 * userAgent.matches("/MicroMessenger/")){ ck.append("WX_"); }
 		 */
-		
-		String wxRegex = ".*MicroMessenger.*";
-		String appRegex = ".*ghyoho.*";
-		if (appType == null || appType.getCode() == null || appType.getValue() == null) {
-			logger.info("========User-Agent======" + userAgent);
-			if (Pattern.matches(appRegex,userAgent)) {
-				ck.append("APP_");
-			} else if (Pattern.matches(wxRegex,userAgent)) {
-				ck.append("WX_");
-			} else {
-				ck.append("OTHER_");
-			}
-		} else {
-			logger.info("==========AppType======="+ appType.toString() +"=======UserAgent======" + userAgent);
-			ck.append(appType.getValue() + "_" + appType.getCode()+"_");
-		}
-		
-
-		if (uid != null && !uid.trim().equals("")) {
-			ck.append("Token_" + uid);
-		} else if (req != null) {
-			id = req.getSession().getId();
-			ck.append("Token_" + id);
-		}
+		ck.append(appType.getValue() + "_" + appType.getCode()+"_");
+		ck.append("Token_" + uid);
 		return ck.toString().toUpperCase();
 	}
 

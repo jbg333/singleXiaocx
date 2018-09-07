@@ -38,8 +38,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 	 * @return  
 	 * @since JDK 1.8
 	 */
-	@Bean("ssoInterceptor")
-	public SSOInterceptor getSSOInterceptor(){
+	@Bean
+	public SSOInterceptor ssoInterceptor(){
 		SSOInterceptor sso =new SSOInterceptor();
 		return sso;
 	}
@@ -48,10 +48,14 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		InterceptorRegistration addInterceptorLogin = registry.addInterceptor(getSSOInterceptor());
+		InterceptorRegistration addInterceptorLogin = registry.addInterceptor(ssoInterceptor());
 		// 排除配置
 		// 拦截配置
 		addInterceptorLogin.addPathPatterns("/**");
+		//swagger权限问题
+		addInterceptorLogin.excludePathPatterns("/login/**","/swagger-resources/**");
+		//swagger权限问题
+		
 		addInterceptorLogin.excludePathPatterns("/");
 		addInterceptorLogin.excludePathPatterns("/**/MP_verify_6bYstsCny1gVSKHO.txt");
 		addInterceptorLogin.excludePathPatterns("swagger-ui.html");
@@ -79,20 +83,20 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 	 * 
 	 * @param converters
 	 */
-	@Override
+	/*@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 
 		StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
 		stringConverter.setDefaultCharset(Charset.forName("UTF-8"));
 		converters.add(stringConverter);
-		/*
+		
 		 * using the FastJsonHttpMessageConverter to handle these below. 1.
 		 * text/html;charset=UTF-8 a page(htm/html/jsp etc.) 2.
 		 * application/json;charset=utf-8 json data type response 3.
 		 * text/plain;charset=UTF-8 a text or string etc. 4.
 		 * application/x-www-form-urlencoded;charset=utf-8 standard encoding
 		 * type. convert form data to a key-value. ...
-		 */
+		 
 		//FastJsonHttpMessageConverter4 fastJsonConverter = new FastJsonHttpMessageConverter4();
 		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
 		
@@ -116,7 +120,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 		super.configureMessageConverters(converters);
 
 	}
-	
+	*/
 	
 	
 
