@@ -1,22 +1,11 @@
 package com.weixin.note.serv.config;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 
 /**
  *  WebMvcConfigurationSupport
@@ -28,7 +17,13 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		     registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		     //registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		     
+	 registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+     registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
+     registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+     registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+     super.addResourceHandlers(registry);
 		
 	}
 	/**
@@ -52,11 +47,12 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 		// 排除配置
 		// 拦截配置
 		addInterceptorLogin.addPathPatterns("/**");
+		addInterceptorLogin.excludePathPatterns("/");
 		//swagger权限问题
 		addInterceptorLogin.excludePathPatterns("/login/**","/swagger-resources/**");
 		//swagger权限问题
 		
-		addInterceptorLogin.excludePathPatterns("/");
+		//addInterceptorLogin.excludePathPatterns("/");
 		addInterceptorLogin.excludePathPatterns("/**/MP_verify_6bYstsCny1gVSKHO.txt");
 		addInterceptorLogin.excludePathPatterns("swagger-ui.html");
 		addInterceptorLogin.excludePathPatterns("*.html");
