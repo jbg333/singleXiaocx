@@ -1,14 +1,22 @@
 package com.weixin.note.serv.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.weixin.note.serv.feign.ILoginPage;
+import com.weixin.note.serv.pojo.enm.Action;
+import com.weixin.note.serv.pojo.enm.Login;
 import com.weixin.note.serv.pojo.vo.Person;
 import com.weixin.note.serv.pojo.vo.StandingBook;
 import com.weixin.note.serv.util.Rt;
@@ -20,6 +28,20 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 public class LoginPageController implements ILoginPage{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	
+	@Login(Action.Skip)
+	@ApiOperation(value="小程序用户登录", notes="提交")
+	@ApiImplicitParam(name = "person", value = "用户实体", required = true, dataType = "Person", paramType = "body")
+	@RequestMapping(value = { "/wx/login" }, method = {RequestMethod.POST})
+	public Rt<List<Person>> login(@RequestParam HashMap<String,String> param) {
+		String js_code = param.get("code");
+		
+		return null;
+	}
+	
+	
+	
 	
 	
 	@ApiOperation(value="用户登录", notes="提交")

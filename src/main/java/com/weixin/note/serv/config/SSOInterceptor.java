@@ -54,7 +54,7 @@ public class SSOInterceptor extends HandlerInterceptorAdapter {
 			if ((login != null) && (login.value() == Action.Skip)) {
 				return true;
 			}
-
+			//忽略特定资源
 			String overUrl = SSOConfig.getInstance().getOverUrl();
 			boolean isOver = HttpUtil.inContainURL(request, overUrl);
 			if (isOver) {
@@ -63,7 +63,7 @@ public class SSOInterceptor extends HandlerInterceptorAdapter {
 			/**
 			 * 如果要是移动端，会从header和变量 "accessToken"中取得toke的值
 			 */
-			SSOToken ssoToken = SSOHelper.getSSOToken(request);
+			SSOToken ssoToken = SSOHelper.getSSOToken(request);//从请求中获取token 并根据token反序列化后拿到缓存中的token
 			if (ssoToken == null || ssoToken.getId() == null) {
 				if (this.isNothingAnnotationPass()) {
 					return true;
@@ -85,6 +85,7 @@ public class SSOInterceptor extends HandlerInterceptorAdapter {
 					return false;
 				}
 			} else {
+				//请求携带token 把parameter 放入attribute中
 				request.setAttribute(SSOConfig.getInstance().getAccessTokenName(), ssoToken);
 				request.setAttribute(SSOConfig.getInstance().getAccessUserId(), ssoToken.getId());
 				SSOTokenContext.getInstance().setSsoToken(ssoToken);
