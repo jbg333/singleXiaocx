@@ -11,11 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.weixin.note.serv.exception.SSOException;
 import com.weixin.note.serv.sso.SSOCache;
 import com.weixin.note.serv.sso.SSOPlugin;
 import com.weixin.note.serv.sso.config.SSOConfig;
 import com.weixin.note.serv.sso.config.SSOConstants;
-import com.weixin.note.serv.sso.exception.SSOException;
 import com.weixin.note.serv.sso.token.AppTypeEnum;
 import com.weixin.note.serv.sso.token.SSOJwtUtils;
 import com.weixin.note.serv.sso.token.SSOToken;

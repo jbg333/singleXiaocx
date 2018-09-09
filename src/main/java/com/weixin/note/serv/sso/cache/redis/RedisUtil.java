@@ -65,7 +65,7 @@ public class RedisUtil {
     }
 
     static {
-        config = RedisUtil.getInstance().getProperties("/auth/ssoredis.properties");
+        config = RedisUtil.getInstance().getProperties("/redis/redis.properties");
     }
 
     /**

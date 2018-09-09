@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.weixin.note.serv.exception.MyRedisException;
 import com.weixin.note.serv.redis.JedisProperties;
 
 import redis.clients.jedis.BinaryClient.LIST_POSITION;
@@ -1312,6 +1313,8 @@ public abstract class AbstractRedisClientImpl {
 		try {
 			jedis = getJedis();
 			return jedis.zrem(key, member);
+		}catch (Exception e) {
+			throw new MyRedisException("调用jedis失败",e);
 		}finally{
 			closeRedis(jedis);
 		}		
@@ -1326,6 +1329,8 @@ public abstract class AbstractRedisClientImpl {
 		try {
 			jedis = getJedis();
 			return jedis.srem(key, member);
+		}catch (Exception e) {
+			throw new MyRedisException("调用jedis失败",e);
 		}finally{
 			closeRedis(jedis);
 		}	
@@ -1339,6 +1344,8 @@ public abstract class AbstractRedisClientImpl {
 		try {
 			jedis = getJedis();
 			return jedis.sadd(key, member);
+		}catch (Exception e) {
+			throw new MyRedisException("调用jedis失败",e);
 		}finally{
 			closeRedis(jedis);
 		}	
@@ -1350,6 +1357,8 @@ public abstract class AbstractRedisClientImpl {
 		try {
 			jedis = getJedis();
 			return jedis.set(key, value);
+		}catch (Exception e) {
+			throw new MyRedisException("调用jedis失败",e);
 		}finally{
 			closeRedis(jedis);
 		}

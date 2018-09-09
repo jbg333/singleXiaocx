@@ -1,4 +1,4 @@
-package com.weixin.note.serv.sso.exception;
+package com.weixin.note.serv.exception;
 
 public class SSOException extends RuntimeException {
 	 private static final long serialVersionUID = 1L;

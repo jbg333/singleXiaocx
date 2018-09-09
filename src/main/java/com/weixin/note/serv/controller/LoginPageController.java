@@ -29,6 +29,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 @Api(tags = "登录相关接口")
 @RestController
+@RequestMapping("api/user")
 public class LoginPageController implements ILoginPage{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -38,10 +39,9 @@ public class LoginPageController implements ILoginPage{
 	@Login(Action.Skip)
 	@ApiOperation(value="小程序用户登录", notes="提交")
 	@ApiImplicitParam(name = "person", value = "用户实体", required = true, dataType = "Person", paramType = "body")
-	@RequestMapping(value = { "/wx/login" }, method = {RequestMethod.POST})
-	public Rt<String> login(@RequestParam HashMap<String,String> param,HttpServletRequest request) {
-		String loginCode = param.get("code");
-		String token = iLoginPageService.getUserLoginStat(loginCode, request);
+	@RequestMapping(value = { "/wx/login" }, method = {RequestMethod.GET})
+	public Rt<String> login(@RequestParam("code")String code,HttpServletRequest request) {
+		String token = iLoginPageService.getUserLoginStat(code, request);
 		return Rt.ok(token);
 	}
 	

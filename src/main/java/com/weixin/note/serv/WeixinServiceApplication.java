@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import com.weixin.note.serv.config.WxMappingJackson2HttpMessageConverter;
+
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 //@EnableFeignClients(basePackages= {"com.jia.weixin.feign"})
@@ -20,6 +22,8 @@ public class WeixinServiceApplication {
 	
 	@Bean
 	public RestTemplate restTemplate() {
-		return new RestTemplate();
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getMessageConverters().add(new WxMappingJackson2HttpMessageConverter());
+		return restTemplate;
 	}
 }

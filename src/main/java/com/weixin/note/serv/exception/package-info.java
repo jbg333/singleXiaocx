@@ -5,4 +5,4 @@
  * @author admin
  *
  */
-package com.weixin.note.serv.sso.exception;
+package com.weixin.note.serv.exception;
