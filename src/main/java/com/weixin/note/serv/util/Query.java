@@ -18,7 +18,7 @@ public class Query extends LinkedHashMap<String, Object> {
 	private int page;
 	// 每页条数
 	private int limit;
-
+	
 	public Query(Map<String, Object> params) {
 		this.putAll(params);
 
@@ -34,7 +34,14 @@ public class Query extends LinkedHashMap<String, Object> {
 		if (params.containsKey("limit") && StringUtils.isNotEmpty(limitStr) && !"null".equals(limitStr)) {
 			this.limit = Integer.parseInt(String.valueOf(params.get("limit")));
 		} else {
-			this.limit = 20;
+			if (params.containsKey("pageSize")) {
+				Object obj = params.get("pageSize");
+				if(obj!=null && !"null".equals(obj)) {
+					limit = Integer.parseInt(obj.toString());
+				}
+			}else {
+				this.limit = 20;
+			}
 		}
 
 		this.put("offset", (page - 1) * limit);

@@ -1,7 +1,12 @@
 package com.weixin.note.serv.db;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -10,22 +15,60 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInterceptor;
 
 @Configuration
 @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
 @ConditionalOnProperty(name = "spring.datasource.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
 public class DruidDataSourceConfig {
-	 
+	private final static String MAPPER_LOCATION = "classpath:/mapper/**/*.xml";
+	
 	@Primary
     @Bean
     @ConfigurationProperties("spring.datasource.druid")
     public DataSource dataSourceOne(){
         return DruidDataSourceBuilder.create().build();
     }
+	
+	/* 	@Bean
+	   public PageHelper pageHelper(){
+	        //分页插件
+	        PageHelper pageHelper = new PageHelper();
+	        Properties properties = new Properties();
+	        properties.setProperty("reasonable", "true");
+	        properties.setProperty("supportMethodsArguments", "true");
+	        properties.setProperty("returnPageInfo", "check");
+	        properties.setProperty("params", "count=countSql");
+	        pageHelper.setProperties(properties);
+	        //添加插件
+	        return pageHelper;
+	    }*/
+		@Primary
+	 	@Bean(name = "mysqlSessionFactory")
+		public SqlSessionFactory mysqlSessionFactory() throws Exception {
+			final SqlSessionFactoryBean bean = new SqlSessionFactoryBean();		
+			
+			bean.setDataSource(dataSourceOne());
+			bean.setMapperLocations(
+		            new PathMatchingResourcePatternResolver()  
+		                .getResources(MAPPER_LOCATION));
+			 //分页插件
+		    Properties properties = new Properties();
+		    properties.setProperty("helperDialect", "mysql");
+		    properties.setProperty("offsetAsPageNum", "true");
+		    properties.setProperty("rowBoundsWithCount", "true");
+		    properties.setProperty("reasonable", "true");
+		    Interceptor interceptor = new PageInterceptor();
+		    interceptor.setProperties(properties);
+		    bean.setPlugins(new Interceptor[] {interceptor});
+			return bean.getObject();
+		}
  
     /**
      * 注册一个StatViewServlet

@@ -3,6 +3,10 @@ package com.weixin.note.serv.pojo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.weixin.note.serv.pojo.enm.DrcrEnum;
+import com.weixin.note.serv.util.EnumUtil;
+
 import io.swagger.annotations.ApiModelProperty;
 
 
@@ -30,6 +34,11 @@ public class BillBookDetail  implements Serializable {
 	@ApiModelProperty("1是借出 2是借入 ")
 	private String drcr;
 	
+	
+	/**对口人名**/
+	@ApiModelProperty("对口人名")
+	private String abutmentUserName;
+	
 	/**借出或者借入涉及金额（单位元）**/
 	@ApiModelProperty("借出或者借入涉及金额（单位元）")
 	private Double money;
@@ -47,10 +56,12 @@ public class BillBookDetail  implements Serializable {
 	private String dataFlag;
 	
 	/**创建时间**/
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("创建时间")
 	private Date createDatetime;
 	
 	/**修改时间**/
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("修改时间")
 	private Date updateDatetime;
 
@@ -89,6 +100,23 @@ public class BillBookDetail  implements Serializable {
 	 */
 	public String getDrcr() {
 		return drcr;
+	}
+	
+	public String getDrcrView() {
+		String  drcrView=EnumUtil.getEnumByCode(DrcrEnum.class,drcr).getValue();
+		return drcrView;
+	}
+	/**
+	 * 设置：对口人名
+	 */
+	public void setAbutmentUserName(String abutmentUserName) {
+		this.abutmentUserName = abutmentUserName;
+	}
+	/**
+	 * 获取：对口人名
+	 */
+	public String getAbutmentUserName() {
+		return abutmentUserName;
 	}
 	/**
 	 * 设置：借出或者借入涉及金额（单位元）

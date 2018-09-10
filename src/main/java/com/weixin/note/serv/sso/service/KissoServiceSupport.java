@@ -73,7 +73,12 @@ public class KissoServiceSupport {
 	 */
 	protected SSOToken getSSOToken(HttpServletRequest request, String cookieName) {
 		Map<String, String> map = HttpUtil.getHeadersInfo(request);
+		//请求头
 		String accessToken = map.get(config.getAccessTokenName());
+		if(StringUtils.isEmpty(accessToken)) {
+			//请求参数
+			accessToken = request.getParameter(SSOConstants.SSO_TOKEN_ATTR);
+		}
 
 		if (null == accessToken || "".equals(accessToken)) {
 			Cookie cookies = CookieHelper.findCookieByName(request, cookieName);
