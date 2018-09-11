@@ -32,6 +32,7 @@ CREATE TABLE `bill_book_detail`  (
   `data_flag` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据状态D已删除 E有效 A创建',
   `create_datetime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_datetime` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  `drcr_date` datetime DEFAULT NULL COMMENT '事情发生日期',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账单明细表' ROW_FORMAT = Dynamic;
 
