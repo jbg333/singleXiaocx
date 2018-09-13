@@ -22,8 +22,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `bill_book_detail`;
 CREATE TABLE `bill_book_detail`  (
-  `id` bigint(20) NOT NULL COMMENT '主键',
-  `user_id` bigint(20) NOT NULL COMMENT '用户主键',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户主键',
+  `open_id` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '存储微信openid',
   `drcr` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '1是借出 2是借入 ',
   `abutment_user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '对口人名',
   `money` decimal(10, 3) NULL DEFAULT NULL COMMENT '借出或者借入涉及金额（单位元）',
@@ -32,9 +33,10 @@ CREATE TABLE `bill_book_detail`  (
   `data_flag` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据状态D已删除 E有效 A创建',
   `create_datetime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_datetime` datetime(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '修改时间',
-  `drcr_date` datetime DEFAULT NULL COMMENT '事情发生日期',
+  `drcr_date` datetime(0) NULL DEFAULT NULL COMMENT '事情发生日期',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账单明细表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '账单明细表' ROW_FORMAT = Dynamic;
+
 
 -- ----------------------------
 -- Table structure for bill_phone_book
