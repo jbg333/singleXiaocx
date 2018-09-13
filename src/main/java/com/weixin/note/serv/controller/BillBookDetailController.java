@@ -3,6 +3,8 @@ package com.weixin.note.serv.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import com.github.pagehelper.PageInfo;
 import com.weixin.note.serv.feign.IBillBookDetail;
 import com.weixin.note.serv.pojo.entity.BillBookDetail;
 import com.weixin.note.serv.service.BillBookDetailService;
+import com.weixin.note.serv.sso.SSOHelper;
+import com.weixin.note.serv.sso.token.SSOToken;
 import com.weixin.note.serv.util.Query;
 import com.weixin.note.serv.util.Rt;
 import com.weixin.note.serv.util.RtPageUtils;
@@ -40,7 +44,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = "账单详情")
 @Controller
 @RequestMapping("billbookdetail")
-public class BillBookDetailController implements IBillBookDetail{
+public class BillBookDetailController{
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private BillBookDetailService billBookDetailService;
@@ -159,8 +163,10 @@ public class BillBookDetailController implements IBillBookDetail{
 	})	
     @ResponseBody
 	@RequestMapping(value = "/save", method = {RequestMethod.POST})
-	public Rt<String> save(@RequestBody BillBookDetail billBookDetail){
+	public Rt<String> save(@RequestBody BillBookDetail billBookDetail,HttpServletRequest request){
 		 try {
+			 SSOToken token =  SSOHelper.getSSOToken(request);
+			 billBookDetail.setOpenId(token.getId());
 			billBookDetailService.save(billBookDetail);
 			return Rt.ok();
 		} catch (Exception e) {

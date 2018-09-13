@@ -17,8 +17,8 @@ package com.weixin.note.serv.pojo.enm;
  * @see        
  */
 public enum DrcrEnum implements EnumMessage{
-	IN("1","借出"),
-	OUT("2","借入");
+	IN("0","借出"),
+	OUT("1","借入");
 	private final String code;
 	private final String value;
 	private DrcrEnum(String code, String value) {

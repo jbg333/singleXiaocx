@@ -30,6 +30,9 @@ public class BillBookDetail  implements Serializable {
 	@ApiModelProperty("用户主键")
 	private Long userId;
 	
+	@ApiModelProperty("用户微信主键")
+	private String openId;
+	
 	/**1是借出 2是借入 **/
 	@ApiModelProperty("1是借出 2是借入 ")
 	private String drcr;
@@ -56,12 +59,10 @@ public class BillBookDetail  implements Serializable {
 	private String dataFlag;
 	
 	/**创建时间**/
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("创建时间")
 	private Date createDatetime;
 	
 	/**修改时间**/
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("修改时间")
 	private Date updateDatetime;
 	
@@ -94,6 +95,13 @@ public class BillBookDetail  implements Serializable {
 	public Long getUserId() {
 		return userId;
 	}
+	
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
 	/**
 	 * 设置：1是借出 2是借入 
 	 */
@@ -108,8 +116,11 @@ public class BillBookDetail  implements Serializable {
 	}
 	
 	public String getDrcrView() {
-		String  drcrView=EnumUtil.getEnumByCode(DrcrEnum.class,drcr).getValue();
-		return drcrView;
+		if(drcr!=null) {
+			String  drcrView=EnumUtil.getEnumByCode(DrcrEnum.class,drcr).getValue();
+			return drcrView;
+		}
+		return null;
 	}
 	/**
 	 * 设置：对口人名

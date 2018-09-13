@@ -7,6 +7,7 @@
     <resultMap type="com.weixin.note.serv.pojo.entity.BillBookDetail" id="billBookDetailMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
+        <result property="openId" column="open_id"/>
         <result property="abutmentUserName" column="abutment_user_name"/>
         <result property="drcr" column="drcr"/>
         <result property="money" column="money"/>
@@ -51,6 +52,7 @@
     		<if test="idVague != null and idVague != ''"> and t.id like concat('%',#{idVague},'%') </if>
             <if test="userId != null and userId != ''"> and t.user_id = #{userId} </if>
     		<if test="userIdVague != null and userIdVague != ''"> and t.user_id like concat('%',#{userIdVague},'%') </if>
+            <if test="openId != null and openId != ''"> and t.open_id = #{openId} </if>
            	<if test="abutmentUserName != null and abutmentUserName != ''"> and t.abutment_user_name = #{abutmentUserName} </if>
     		<if test="abutmentUserNameVague != null and abutmentUserNameVague != ''"> and t.abutment_user_name like concat('%',#{abutmentUserNameVague},'%') </if>
             <if test="drcr != null and drcr != ''"> and t.drcr = #{drcr} </if>
@@ -76,6 +78,7 @@
 		(
 			`id`, 
 			`user_id`, 
+			`open_id`,
 			`abutment_user_name`,
 			`drcr`, 
 			`money`, 
@@ -90,6 +93,7 @@
 		(
 			#{id}, 
 			#{userId}, 
+			#{openId},
 			#{abutmentUserName}, 
 			#{drcr}, 
 			#{money}, 
@@ -106,6 +110,7 @@
 		update bill_book_detail 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="openId != null">`open_id` = #{openId}, </if>
 			<if test="abutmentUserName != null">`abutment_user_name` = #{abutmentUserName}, </if>
 			<if test="drcr != null">`drcr` = #{drcr}, </if>
 			<if test="money != null">`money` = #{money}, </if>
