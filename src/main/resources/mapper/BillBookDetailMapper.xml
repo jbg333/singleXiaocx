@@ -7,6 +7,7 @@
     <resultMap type="com.weixin.note.serv.pojo.entity.BillBookDetail" id="billBookDetailMap">
         <result property="id" column="id"/>
         <result property="userId" column="user_id"/>
+        <result property="abutmentUserName" column="abutment_user_name"/>
         <result property="drcr" column="drcr"/>
         <result property="money" column="money"/>
         <result property="backMoney" column="back_money"/>
@@ -14,6 +15,7 @@
         <result property="dataFlag" column="data_flag"/>
         <result property="createDatetime" column="create_datetime"/>
         <result property="updateDatetime" column="update_datetime"/>
+        <result property="drcrDate" column="drcr_date"/>
     </resultMap>
 
 	<select id="get" resultMap="billBookDetailMap">
@@ -49,6 +51,8 @@
     		<if test="idVague != null and idVague != ''"> and t.id like concat('%',#{idVague},'%') </if>
             <if test="userId != null and userId != ''"> and t.user_id = #{userId} </if>
     		<if test="userIdVague != null and userIdVague != ''"> and t.user_id like concat('%',#{userIdVague},'%') </if>
+           	<if test="abutmentUserName != null and abutmentUserName != ''"> and t.abutment_user_name = #{abutmentUserName} </if>
+    		<if test="abutmentUserNameVague != null and abutmentUserNameVague != ''"> and t.abutment_user_name like concat('%',#{abutmentUserNameVague},'%') </if>
             <if test="drcr != null and drcr != ''"> and t.drcr = #{drcr} </if>
     		<if test="drcrVague != null and drcrVague != ''"> and t.drcr like concat('%',#{drcrVague},'%') </if>
             <if test="money != null and money != ''"> and t.money = #{money} </if>
@@ -63,6 +67,7 @@
     		<if test="createDatetimeVague != null and createDatetimeVague != ''"> and t.create_datetime like concat('%',#{createDatetimeVague},'%') </if>
             <if test="updateDatetime != null and updateDatetime != ''"> and t.update_datetime = #{updateDatetime} </if>
     		<if test="updateDatetimeVague != null and updateDatetimeVague != ''"> and t.update_datetime like concat('%',#{updateDatetimeVague},'%') </if>
+       		<if test="drcrDate != null and drcrDate != ''"> and t.drcr_date = #{drcrDate} </if>
         </where>
     </sql>
 	 
@@ -71,25 +76,29 @@
 		(
 			`id`, 
 			`user_id`, 
+			`abutment_user_name`,
 			`drcr`, 
 			`money`, 
 			`back_money`, 
 			`remark`, 
 			`data_flag`, 
 			`create_datetime`, 
-			`update_datetime`
+			`update_datetime`,
+			`drcr_date`
 		)
 		values
 		(
 			#{id}, 
 			#{userId}, 
+			#{abutmentUserName}, 
 			#{drcr}, 
 			#{money}, 
 			#{backMoney}, 
 			#{remark}, 
 			#{dataFlag}, 
 			#{createDatetime}, 
-			#{updateDatetime}
+			#{updateDatetime},
+			#{drcrDate}
 		)
 	</insert>
 	 
@@ -97,6 +106,7 @@
 		update bill_book_detail 
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="abutmentUserName != null">`abutment_user_name` = #{abutmentUserName}, </if>
 			<if test="drcr != null">`drcr` = #{drcr}, </if>
 			<if test="money != null">`money` = #{money}, </if>
 			<if test="backMoney != null">`back_money` = #{backMoney}, </if>
@@ -104,6 +114,7 @@
 			<if test="dataFlag != null">`data_flag` = #{dataFlag}, </if>
 			<if test="createDatetime != null">`create_datetime` = #{createDatetime}, </if>
 			<if test="updateDatetime != null">`update_datetime` = #{updateDatetime}</if>
+			<if test="drcrDate != null">`drcr_date` = #{drcrDate}</if>
 		</set>
 		where id = #{id}
 	</update>

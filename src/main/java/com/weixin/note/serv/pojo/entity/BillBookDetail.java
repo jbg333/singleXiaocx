@@ -64,6 +64,11 @@ public class BillBookDetail  implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("修改时间")
 	private Date updateDatetime;
+	
+	/**事情发生日期**/
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
+	@ApiModelProperty("事情发生日期")
+	private Date drcrDate;
 
 	/**
 	 * 设置：主键
@@ -190,4 +195,12 @@ public class BillBookDetail  implements Serializable {
 	public Date getUpdateDatetime() {
 		return updateDatetime;
 	}
+	public Date getDrcrDate() {
+		return drcrDate;
+	}
+	public void setDrcrDate(Date drcrDate) {
+		this.drcrDate = drcrDate;
+	}
+	
+	
 }
