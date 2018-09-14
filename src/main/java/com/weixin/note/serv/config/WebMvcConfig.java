@@ -112,11 +112,11 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {// org.springframe
 		 * type. convert form data to a key-value. ...
 		 */
 		FastJsonHttpMessageConverter fastJsonConverter = new FastJsonHttpMessageConverter();
-		FastJsonConfig fastJsonConfig = new FastJsonConfig();
+	/*	FastJsonConfig fastJsonConfig = new FastJsonConfig();
 		fastJsonConfig.setCharset(Charset.forName("UTF-8"));
 		fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
 		fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		fastJsonConverter.setFastJsonConfig(fastJsonConfig);
+		fastJsonConverter.setFastJsonConfig(fastJsonConfig);*/
 		List<MediaType> supportedMediaTypes = new ArrayList<MediaType>();
 		MediaType text_plain = new MediaType(MediaType.TEXT_PLAIN, Charset.forName("UTF-8"));
 		MediaType text_html = new MediaType(MediaType.TEXT_HTML, Charset.forName("UTF-8"));

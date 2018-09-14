@@ -69,9 +69,11 @@ public class BillBookDetailController{
 	})	
     @ResponseBody
 	@RequestMapping(value = "/listData", method = {RequestMethod.POST})
-	public Rt<BillBookDetail> listData(@RequestParam Map<String, Object> params){
+	public Rt<BillBookDetail> listData(@RequestParam Map<String, Object> params,HttpServletRequest request){
 		//查询列表数据
 		try {
+			SSOToken token =  SSOHelper.getSSOToken(request);
+			params.put("openId", token.getId());
 			Query query = new Query(params);
 	    	PageInfo<BillBookDetail> billBookDetailResult = billBookDetailService.queryPageList(query);
 	    	RtPageUtils<BillBookDetail> pageUtil = new RtPageUtils<>(billBookDetailResult.getList(), billBookDetailResult.getTotal(), query.getLimit(), query.getPage());
@@ -248,7 +250,7 @@ public class BillBookDetailController{
 			@ApiResponse(code = 500, message = "内部错误，信息由msg字段返回")
 	})	
     @ResponseBody
-	@RequestMapping(value = "/logicDelete/{id}", method = {RequestMethod.POST})
+	@RequestMapping(value = "/logicDelete/{id}", method = {RequestMethod.GET})
 	public Rt<String> logicDelete(@PathVariable("id") Long id){
 		 try {
 			billBookDetailService.logicDelete(id);

@@ -3,7 +3,7 @@ package com.weixin.note.serv.pojo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.weixin.note.serv.pojo.enm.DrcrEnum;
 import com.weixin.note.serv.util.EnumUtil;
 
@@ -67,7 +67,7 @@ public class BillBookDetail  implements Serializable {
 	private Date updateDatetime;
 	
 	/**事情发生日期**/
-	@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
+	//@JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
 	@ApiModelProperty("事情发生日期")
 	private Date drcrDate;
 
@@ -206,6 +206,11 @@ public class BillBookDetail  implements Serializable {
 	public Date getUpdateDatetime() {
 		return updateDatetime;
 	}
+	@JSONField(format="yyyy-MM-dd")
+	public Date getDrcrDateView() {
+		return drcrDate;
+	}
+	
 	public Date getDrcrDate() {
 		return drcrDate;
 	}
